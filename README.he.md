@@ -63,7 +63,7 @@
 ## מה הסקריפט עושה בדיוק
 
 - בודק שזה מק עם Apple Silicon ו-macOS 14 ומעלה.
-- מוריד את OpenSuperWhisper מהעמוד הרשמי שלה ב-GitHub, ובודק גם checksum וגם את חתימת המפתח (Apple notarized) לפני ההתקנה.
+- מוריד את OpenSuperWhisper מהעמוד הרשמי שלה ב-GitHub, ולפני ההתקנה בודק את ה-checksum, את חתימת המפתח (מזהה הצוות של המפתח אצל Apple) ואת אישור ה-notarization של Apple.
 - מוריד את המודל מה-Hugging Face של ivrit.ai ובודק checksum.
 - בהתקנה ראשונה כותב את ההגדרות ומדלג על מסך הפתיחה, כי מסך הפתיחה מחליף את השפה לשפת המערכת ואת קיצור המקלדת.
 - אפשר לקרוא את כל הקוד כאן: [install.sh](install.sh).

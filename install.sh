@@ -111,11 +111,16 @@ find_app() {
   return 1
 }
 
+notarization_stapled() {
+  codesign -dvvv "$1" 2>&1 | grep -qx 'Notarization Ticket=stapled'
+}
+
 verify_app_signature() {
   local app="$1" team
   codesign --verify --deep --strict "$app" >/dev/null 2>&1 || die "Signature check failed for $app."
   team="$(codesign -dv "$app" 2>&1 | sed -n 's/^TeamIdentifier=//p')"
   [ "$team" = "$APP_TEAM_ID" ] || die "Unexpected developer signature on $app (team '$team')."
+  notarization_stapled "$app" || die "$app has no Apple notarization ticket."
 }
 
 download_app_dmg() {

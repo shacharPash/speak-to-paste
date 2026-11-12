@@ -57,7 +57,7 @@ Run the same command again. It updates what changed and skips the rest. Settings
 ## What the script does
 
 - Checks for an Apple Silicon Mac with macOS 14 or newer.
-- Downloads OpenSuperWhisper from its official GitHub release and verifies both its checksum and its developer signature (Apple notarized) before installing.
+- Downloads OpenSuperWhisper from its official GitHub release and, before installing, verifies its checksum, its developer signature (the OpenSuperWhisper developer's Apple team ID) and its Apple notarization ticket.
 - Downloads the model from ivrit.ai on Hugging Face and verifies its checksum.
 - On first install, writes the settings and skips the app's onboarding screen, which would otherwise reset the language to the system language and change the shortcut.
 - Everything is in one readable file: [install.sh](install.sh).
