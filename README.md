@@ -1,5 +1,7 @@
 # speak-to-paste
 
+![speak-to-paste: press a shortcut, speak, press it again](assets/banner.png)
+
 **Press a shortcut, speak, press it again: what you said is pasted wherever your cursor is, anywhere on your Mac.**
 
 Hebrew-first (the [ivrit.ai](https://huggingface.co/ivrit-ai/whisper-large-v3-turbo-ggml) model), and it handles English and mixed Hebrew-English too. Fully local, free and unlimited: no account, and no audio ever leaves your Mac. One command to install, the same command to update.
