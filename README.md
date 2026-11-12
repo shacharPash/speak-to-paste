@@ -2,82 +2,76 @@
 
 **Press a shortcut, speak, press it again: what you said is pasted wherever your cursor is, anywhere on your Mac.**
 
-Hebrew-first (the ivrit.ai model), handles English too. Fully local, free, unlimited. One command to install, the same command to update.
+Hebrew-first (the [ivrit.ai](https://huggingface.co/ivrit-ai/whisper-large-v3-turbo-ggml) model), and it handles English and mixed Hebrew-English too. Fully local, free and unlimited: no account, and no audio ever leaves your Mac. One command to install, the same command to update.
 
----
+[לקריאה בעברית](README.he.md)
 
-לוחצים על קיצור מקלדת, מדברים, לוחצים שוב, והטקסט מודבק בדיוק איפה שהסמן נמצא: וואטסאפ, סלאק, מייל, דפדפן, כל שדה טקסט.
+## Requirements
 
-הכל רץ מקומית על המחשב: בחינם, בלי הגבלה, בלי חשבון ובלי לשלוח הקלטות לענן.
+- An Apple Silicon Mac (M1 or newer). Intel Macs are not supported.
+- macOS 14 (Sonoma) or newer.
+- About 2 GB of free disk space.
 
-**שפות:** הכלי מותאם לעברית, וגם לעברית עם מילים באנגלית באמצע (PR, full access, KPI), שנכתבות באותיות לטיניות. גם משפטים שלמים באנגלית עובדים ברוב המקרים.
+## Install
 
-## מה צריך
-
-- מק עם שבב Apple Silicon (M1 ומעלה). מקים עם מעבד אינטל לא נתמכים.
-- גרסת macOS 14 (Sonoma) ומעלה.
-- בערך 2GB פנויים בדיסק.
-
-## התקנה: פקודה אחת
-
-**ראשית**, פותחים את הטרמינל: לוחצים `Cmd + Space`, מקלידים `Terminal` ולוחצים Enter.
-
-**אחר כך**, מדביקים את השורה הזו ולוחצים Enter:
+Open Terminal (`Cmd + Space`, type `Terminal`, press Enter) and paste:
 
 ```bash
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/shacharPash/speak-to-paste/main/install.sh)"
 ```
 
-הסקריפט מוריד את האפליקציה ואת המודל (1.6GB, כמה דקות), מוודא ששניהם תקינים ומקוריים, מגדיר הכל ופותח את האפליקציה. לא צריך סיסמה ולא צריך להתקין שום דבר אחר.
+The script downloads the app and the model (1.6 GB, a few minutes), verifies both, configures everything and opens the app. No password, nothing else to install.
 
-**לסיום**, בחלון של האפליקציה יופיעו שתי הרשאות חד-פעמיות. לוחצים על Grant Access ליד כל אחת:
+Then grant two one-time permissions in the app window by clicking **Grant Access** next to each:
 
-- **מיקרופון** (Microphone Access): מאשרים בחלון שקופץ.
-- **נגישות** (Accessibility Access): נפתחות הגדרות המערכת, ומדליקים שם את OpenSuperWhisper. בלי ההרשאה הזו האפליקציה לא יכולה להדביק את הטקסט.
+- **Microphone Access**: allow it in the popup.
+- **Accessibility Access**: System Settings opens; switch OpenSuperWhisper on. This is what lets it paste the text for you.
 
-## איך משתמשים
+## Use
 
-- שמים את הסמן בשדה טקסט כלשהו.
-- לוחצים על Option יחד עם המקש `` ` `` (המקש שמשמאל ל-1), ומדברים.
-- לוחצים שוב על אותו קיצור. אחרי שנייה-שתיים הטקסט מודבק.
+1. Put the cursor in any text field: WhatsApp, Slack, mail, the browser, your editor.
+2. Press `Option` + `` ` `` (the key left of 1) and speak.
+3. Press it again. A second or two later the text is pasted at the cursor.
 
-מי שמעדיף, יכול גם להחזיק את הקיצור לאורך כל הדיבור ולשחרר בסוף. שני הסגנונות עובדים. את הקיצור עצמו אפשר להחליף בהגדרות של האפליקציה.
+Prefer push-to-talk? Hold the shortcut while you speak and release at the end; both styles work. The shortcut can be changed in the app's settings. The first transcription after launch is slower while the model loads.
 
-ההקלטה הראשונה אחרי שהאפליקציה עולה איטית יותר, כי המודל נטען לזיכרון. משם זה מהיר.
+**Languages:** tuned for Hebrew, including English terms inside Hebrew sentences, which come out in Latin letters (PR, full access, KPI). Full English sentences work most of the time. If you are dictating mostly English for a while, pick English from the Language menu of the menu bar icon and switch back to Auto afterwards.
 
-## עדכון
+## Update
 
-מריצים שוב **את אותה פקודה בדיוק**. הסקריפט מעדכן מה שצריך ומדלג על מה שכבר מעודכן. הגדרות ששיניתם בעצמכם נשמרות.
-
-אם רוצים לחזור להגדרות המומלצות, מוסיפים `--reset-settings` בסוף:
+Run the same command again. It updates what changed and skips the rest. Settings you changed yourself are kept. To restore the recommended settings, add `--reset-settings`:
 
 ```bash
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/shacharPash/speak-to-paste/main/install.sh)" _ --reset-settings
 ```
 
-## אם משהו לא עובד
+## Troubleshooting
 
-- **הטקסט לא מודבק:** חסרה הרשאת נגישות. נכנסים להגדרות מערכת, פרטיות ואבטחה, נגישות (Accessibility), מדליקים את OpenSuperWhisper, וסוגרים ופותחים את האפליקציה מחדש.
-- **הקיצור לא עושה כלום:** אולי אפליקציה אחרת תפסה אותו. בהגדרות של OpenSuperWhisper אפשר לבחור קיצור אחר.
-- **משפט באנגלית יצא בעברית:** זה קורה לפעמים במצב Auto. אם מכתיבים הרבה באנגלית, בוחרים English בתפריט Language של האייקון בשורת התפריטים, ומחזירים ל-Auto בסוף.
-- **ההורדה נקטעה:** מריצים שוב את אותה פקודה, והיא ממשיכה מאיפה שעצרה.
+- **The text is not pasted:** the Accessibility permission is missing. Open System Settings, Privacy & Security, Accessibility, enable OpenSuperWhisper, then quit and reopen the app.
+- **The shortcut does nothing:** another app may already use it. Pick a different shortcut in OpenSuperWhisper's settings.
+- **An English sentence came out in Hebrew:** this happens occasionally in Auto mode. Switch the language to English from the menu bar icon.
+- **The download was interrupted:** run the same command again; it resumes where it stopped.
 
-## מה הסקריפט עושה בדיוק
+## What the script does
 
-- בודק שזה מק עם Apple Silicon ו-macOS 14 ומעלה.
-- מוריד את OpenSuperWhisper מהעמוד הרשמי שלה ב-GitHub, ובודק גם checksum וגם את חתימת המפתח (Apple notarized) לפני ההתקנה.
-- מוריד את המודל מה-Hugging Face של ivrit.ai ובודק checksum.
-- בהתקנה ראשונה כותב את ההגדרות ומדלג על מסך הפתיחה, כי מסך הפתיחה מחליף את השפה לשפת המערכת ואת קיצור המקלדת.
-- אפשר לקרוא את כל הקוד כאן: [install.sh](install.sh).
+- Checks for an Apple Silicon Mac with macOS 14 or newer.
+- Downloads OpenSuperWhisper from its official GitHub release and verifies both its checksum and its developer signature (Apple notarized) before installing.
+- Downloads the model from ivrit.ai on Hugging Face and verifies its checksum.
+- On first install, writes the settings and skips the app's onboarding screen, which would otherwise reset the language to the system language and change the shortcut.
+- Everything is in one readable file: [install.sh](install.sh).
 
-## קרדיט
+## Credits
 
-- האפליקציה [OpenSuperWhisper](https://github.com/Starmel/OpenSuperWhisper) של Starmel, בקוד פתוח, היא זו שמקליטה, מתמללת ומדביקה.
-- המודל העברי הוא של [ivrit.ai](https://huggingface.co/ivrit-ai/whisper-large-v3-turbo-ggml).
-- הפרויקט הזה הוא ההתקנה וההגדרות שמחברות ביניהם, בפקודה אחת.
+- [OpenSuperWhisper](https://github.com/Starmel/OpenSuperWhisper) by Starmel, open source, does the recording, transcription and pasting.
+- The Hebrew speech model is by [ivrit.ai](https://huggingface.co/ivrit-ai/whisper-large-v3-turbo-ggml).
+- This project is the installer and configuration that connects them in one command.
 
-## הסרה
+## Uninstall
 
 ```bash
 osascript -e 'quit app "OpenSuperWhisper"'; rm -rf /Applications/OpenSuperWhisper.app ~/Applications/OpenSuperWhisper.app "$HOME/Library/Application Support/ru.starmel.OpenSuperWhisper"; defaults delete ru.starmel.OpenSuperWhisper
 ```
+
+## License
+
+[MIT](LICENSE)
