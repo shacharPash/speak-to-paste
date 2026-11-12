@@ -59,7 +59,7 @@ Run the same command again. It updates what changed and skips the rest. Settings
 - Checks for an Apple Silicon Mac with macOS 14 or newer.
 - Downloads OpenSuperWhisper from its official GitHub release and, before installing, verifies its checksum, its developer signature (the OpenSuperWhisper developer's Apple team ID) and its Apple notarization ticket.
 - Downloads the model from ivrit.ai on Hugging Face and verifies its checksum.
-- On first install, writes the settings and skips the app's onboarding screen, which would otherwise reset the language to the system language and change the shortcut.
+- On first install, writes the settings and skips the app's onboarding screen, which would otherwise reset the language to the system language and change the shortcut. If you already used OpenSuperWhisper, its engine, model, language, shortcut and a few other settings are replaced.
 - Everything is in one readable file: [install.sh](install.sh).
 
 ## Credits
@@ -69,6 +69,8 @@ Run the same command again. It updates what changed and skips the rest. Settings
 - This project is the installer and configuration that connects them in one command.
 
 ## Uninstall
+
+This removes OpenSuperWhisper itself, its downloaded models and its settings, including anything you set up in OpenSuperWhisper before using speak-to-paste.
 
 ```bash
 osascript -e 'quit app "OpenSuperWhisper"'; rm -rf /Applications/OpenSuperWhisper.app ~/Applications/OpenSuperWhisper.app "$HOME/Library/Application Support/ru.starmel.OpenSuperWhisper"; defaults delete ru.starmel.OpenSuperWhisper
