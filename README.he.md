@@ -63,9 +63,9 @@
 ## מה הסקריפט עושה בדיוק
 
 - בודק שזה מק עם Apple Silicon ו-macOS 14 ומעלה.
-- מוריד את OpenSuperWhisper מהעמוד הרשמי שלה ב-GitHub, ובודק גם checksum וגם את חתימת המפתח (Apple notarized) לפני ההתקנה.
+- מוריד את OpenSuperWhisper מהעמוד הרשמי שלה ב-GitHub, ולפני ההתקנה בודק את ה-checksum, את חתימת המפתח (מזהה הצוות של המפתח אצל Apple) ואת אישור ה-notarization של Apple.
 - מוריד את המודל מה-Hugging Face של ivrit.ai ובודק checksum.
-- בהתקנה ראשונה כותב את ההגדרות ומדלג על מסך הפתיחה, כי מסך הפתיחה מחליף את השפה לשפת המערכת ואת קיצור המקלדת.
+- בהתקנה ראשונה כותב את ההגדרות ומדלג על מסך הפתיחה, כי מסך הפתיחה מחליף את השפה לשפת המערכת ואת קיצור המקלדת. מי שכבר השתמש ב-OpenSuperWhisper: ההגדרות של המנוע, המודל, השפה, הקיצור ועוד כמה הגדרות יוחלפו.
 - אפשר לקרוא את כל הקוד כאן: [install.sh](install.sh).
 
 ## קרדיט
@@ -76,6 +76,12 @@
 
 ## הסרה
 
+הפקודה מסירה את OpenSuperWhisper עצמה, את המודלים שהורדו ואת ההגדרות שלה, כולל מה שהוגדר בה לפני השימוש ב-speak-to-paste.
+
 ```bash
 osascript -e 'quit app "OpenSuperWhisper"'; rm -rf /Applications/OpenSuperWhisper.app ~/Applications/OpenSuperWhisper.app "$HOME/Library/Application Support/ru.starmel.OpenSuperWhisper"; defaults delete ru.starmel.OpenSuperWhisper
 ```
+
+## רישיון
+
+הקוד מופץ ברישיון [MIT](LICENSE).

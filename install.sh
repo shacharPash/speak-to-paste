@@ -18,7 +18,7 @@ APP_TEAM_ID="8LLDD7HWZK"
 APP_DMG_URL="https://github.com/Starmel/OpenSuperWhisper/releases/download/${APP_VERSION}/OpenSuperWhisper.dmg"
 APP_DMG_SHA256="af5ca5142c22e5bed3ba7d2642223c0a481e49935f5a5a6cf1bc766c7ecd9d69"
 
-MODEL_URL="https://huggingface.co/ivrit-ai/whisper-large-v3-turbo-ggml/resolve/main/ggml-model.bin?download=true"
+MODEL_URL="https://huggingface.co/ivrit-ai/whisper-large-v3-turbo-ggml/resolve/2130c78e4a9cb4914cc4df91a1c3031407789705/ggml-model.bin?download=true"
 MODEL_SHA256="c8090411113357097bfafc2b8e228ec1639fa7f5fe4ecb5d054ac0ccef8641b1"
 MODEL_BYTES=1624555275
 MODEL_FILE="ggml-ivrit-large-v3-turbo.bin"
@@ -111,11 +111,16 @@ find_app() {
   return 1
 }
 
+notarization_stapled() {
+  codesign -dvvv "$1" 2>&1 | grep -qx 'Notarization Ticket=stapled'
+}
+
 verify_app_signature() {
   local app="$1" team
   codesign --verify --deep --strict "$app" >/dev/null 2>&1 || die "Signature check failed for $app."
   team="$(codesign -dv "$app" 2>&1 | sed -n 's/^TeamIdentifier=//p')"
   [ "$team" = "$APP_TEAM_ID" ] || die "Unexpected developer signature on $app (team '$team')."
+  notarization_stapled "$app" || die "$app has no Apple notarization ticket."
 }
 
 download_app_dmg() {
